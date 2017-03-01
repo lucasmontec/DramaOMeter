@@ -7,6 +7,12 @@ $("#clippy").click(function() {
    toastr.info('link copied to clipboard!'); 
 });
 
+$('#makeForm').submit(function() {
+    var txt = $('#iPhrase');
+    txt.val(LZString.compress(txt.val()));
+});
+
+
 //Setup spinner
 $( function() {
     var spin = $( "#spinner" ).spinner({
@@ -70,7 +76,7 @@ var reading = getParameterByName("drama");
 var dramaReading = -1;
 console.log("drama is "+reading);
 if(reading && $.isNumeric(reading)){
-    dramaReading = reading;
+    dramaReading = LZString.decompress(reading);
     setToShow();
 }else{
     setToCreate();
